@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ঈদ-উল-আযহার শুভেচ্ছা</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/fireworks-js@2.x/dist/index.umd.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Noto Sans Bengali', sans-serif;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        #fireworks-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .card-container {
+            /* background-color: rgba(0, 0, 0, 0.7); */ /* এই লাইনটি সরানো হয়েছে */
+            border: 3px solid #FFD700;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            /* backdrop-filter: blur(5px); */ /* এই লাইনটি সরানো হয়েছে */
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); /* শ্যাডো রাখা যেতে পারে */
+        }
+
+        h1 {
+            color: #FFD700;
+            margin-bottom: 20px;
+            font-size: 2.2rem;
+            text-shadow: 0 0 5px rgba(0,0,0,0.7); /* লেখা স্পষ্ট দেখার জন্য হালকা শ্যাডো */
+        }
+
+        .eid-gif {
+            width: 100%;
+            max-width: 400px;
+            border: 2px solid #FFD700;
+            border-radius: 10px;
+            margin: 0 auto 20px;
+            display: block;
+        }
+
+        .greeting-message {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+            text-shadow: 0 0 3px rgba(0,0,0,0.7); /* লেখা স্পষ্ট দেখার জন্য হালকা শ্যাডো */
+        }
+
+        .personalized-message {
+            font-size: 1.3rem;
+            color: #FFD700;
+            margin: 20px 0;
+            min-height: 60px;
+            text-shadow: 0 0 3px rgba(0,0,0,0.7); /* লেখা স্পষ্ট দেখার জন্য হালকা শ্যাডো */
+        }
+
+        .input-section {
+            margin: 25px 0;
+        }
+        .input-section label { /* লেবেলের জন্য স্টাইল (যদি ব্যবহার করেন) */
+            display: block;
+            margin-bottom: 8px;
+            text-shadow: 0 0 3px rgba(0,0,0,0.7);
+        }
+
+
+        input[type="text"] {
+            padding: 12px 15px;
+            border: 2px solid #FFD700;
+            border-radius: 8px;
+            background-color: rgba(0, 0, 0, 0.5); /* ইনপুট ফিল্ডের জন্য হালকা কালো ব্যাকগ্রাউন্ড */
+            color: white;
+            font-size: 1rem;
+            width: 100%;
+            max-width: 300px;
+            margin-bottom: 15px;
+        }
+
+        input[type="text"]::placeholder {
+            color: #ccc;
+        }
+
+        button {
+            background-color: #FFD700;
+            color: #000;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #ffc800;
+            transform: translateY(-2px);
+        }
+
+        .share-section {
+            margin-top: 20px;
+            display: none;
+        }
+        .share-section p { /* শেয়ার সেকশনের লেখার জন্য শ্যাডো */
+             text-shadow: 0 0 3px rgba(0,0,0,0.7);
+        }
+
+
+        .share-url {
+            background-color: rgba(0, 0, 0, 0.5); /* লিঙ্কের ব্যাকগ্রাউন্ড */
+            padding: 10px;
+            border-radius: 8px;
+            word-break: break-all;
+            margin: 15px 0;
+            color: #fff;
+            border: 1px solid rgba(255,215,0,0.5); /* হালকা গোল্ডেন বর্ডার */
+        }
+
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .share-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .share-btn.whatsapp {
+            background-color: #25D366;
+        }
+
+        .share-btn.facebook {
+            background-color: #3b5998;
+        }
+
+        .copy-btn {
+            background-color: #2196F3;
+            color: white;
+        }
+
+        @media (max-width: 600px) {
+            .card-container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .greeting-message {
+                font-size: 1.2rem;
+            }
+            
+            .personalized-message {
+                font-size: 1.1rem;
+            }
+            input[type="text"] {
+                max-width: 100%;
+            }
+            button {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="fireworks-container"></div>
+    
+    <div class="card-container">
+        <h1>ঈদ-উল-আযহা মোবারক!</h1>
+        
+        <img src="my_eid_card.gif" alt="ঈদ মোবারক" class="eid-gif">
+        
+        <p class="greeting-message">সবাইকে ঈদ-উল-আযহার শুভেচ্ছা!</p>
+        
+        <div class="personalized-message" id="personalizedMessage"></div>
+        
+        <div class="input-section">
+            <!-- আপনি চাইলে এখানে লেবেল যোগ করতে পারেন: <label for="nameInput">আপনার নাম:</label> -->
+            <input type="text" id="nameInput" placeholder="আপনার নাম লিখুন">
+            <button id="generateBtn">লিঙ্ক তৈরি ও শেয়ার করুন</button>
+        </div>
+        
+        <div class="share-section" id="shareSection">
+            <p>এই লিঙ্কটি শেয়ার করুন:</p>
+            <div class="share-url" id="shareUrl"></div>
+            <button class="copy-btn" id="copyBtn">লিঙ্ক কপি করুন</button>
+            
+            <div class="share-buttons">
+                <button class="share-btn whatsapp" id="whatsappBtn">WhatsApp এ শেয়ার করুন</button>
+                <button class="share-btn facebook" id="facebookBtn">Facebook এ শেয়ার করুন</button>
+                <button class="share-btn" id="nativeShareBtn" style="display: none;">সরাসরি শেয়ার করুন</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // আতশবাজি ইনিশিয়ালাইজ
+            const container = document.getElementById('fireworks-container');
+            const fireworks = new Fireworks.default(container, {
+                autoresize: true,
+                opacity: 0.5, // আতশবাজির অপাসিটি
+                acceleration: 1.05,
+                friction: 0.97,
+                gravity: 1.5,
+                particles: 120, // আতশবাজির কণা বাড়ানো হলো
+                traceLength: 3,
+                traceSpeed: 10,
+                explosion: 6, // বিস্ফোরণ বাড়ানো হলো
+                intensity: 35, // তীব্রতা বাড়ানো হলো
+                flickering: 50,
+                lineStyle: 'round',
+                hue: {
+                    min: 0,
+                    max: 360
+                },
+                delay: {
+                    min: 20, // ডিলে কমানো হলো, আরও ঘন ঘন হবে
+                    max: 40
+                },
+                rocketsPoint: { 
+                    min: 0, // পুরো স্ক্রিন জুড়ে ছড়ানোর জন্য
+                    max: 100
+                },
+                lineWidth: {
+                    explosion: {
+                        min: 1,
+                        max: 4 // বিস্ফোরণের রেখার প্রস্থ
+                    },
+                    trace: {
+                        min: 1,
+                        max: 2.5 // ট্রেসের রেখার প্রস্থ
+                    }
+                },
+                brightness: {
+                    min: 50,
+                    max: 85 // উজ্জ্বলতা
+                },
+                decay: {
+                     min: 0.010, // ডিকে রেট
+                     max: 0.020
+                }
+            });
+            fireworks.start();
+            
+            const nameInput = document.getElementById('nameInput');
+            const generateBtn = document.getElementById('generateBtn');
+            const personalizedMessage = document.getElementById('personalizedMessage');
+            const shareSection = document.getElementById('shareSection');
+            const shareUrlDisplay = document.getElementById('shareUrl');
+            const copyBtn = document.getElementById('copyBtn');
+            const whatsappBtn = document.getElementById('whatsappBtn');
+            const facebookBtn = document.getElementById('facebookBtn');
+            const nativeShareBtn = document.getElementById('nativeShareBtn');
+            
+            const urlParams = new URLSearchParams(window.location.search);
+            const nameParam = urlParams.get('name');
+            
+            if (nameParam) {
+                const decodedName = decodeURIComponent(nameParam);
+                nameInput.value = decodedName;
+                updateGreeting(decodedName);
+                showShareSection(decodedName);
+                document.querySelector('.input-section').style.display = 'none';
+            }
+            
+            generateBtn.addEventListener('click', function() {
+                const name = nameInput.value.trim();
+                if (name) {
+                    updateGreeting(name);
+                    showShareSection(name);
+                    const newUrl = `${window.location.pathname}?name=${encodeURIComponent(name)}`;
+                    window.history.pushState({path: newUrl}, '', newUrl);
+                } else {
+                    alert('দয়া করে আপনার নাম লিখুন');
+                    nameInput.focus();
+                }
+            });
+            
+            copyBtn.addEventListener('click', function() {
+                const urlToCopy = shareUrlDisplay.textContent;
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    navigator.clipboard.writeText(urlToCopy).then(function() {
+                        alert('লিঙ্ক কপি করা হয়েছে!');
+                    }, function(err) {
+                        console.error('ক্লিপবোর্ডে কপি করতে সমস্যা: ', err);
+                        fallbackCopyTextToClipboard(urlToCopy);
+                    });
+                } else {
+                    fallbackCopyTextToClipboard(urlToCopy);
+                }
+            });
+
+            function fallbackCopyTextToClipboard(text) {
+                const textArea = document.createElement("textarea");
+                textArea.value = text;
+                textArea.style.top = "0";
+                textArea.style.left = "0";
+                textArea.style.position = "fixed";
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                try {
+                    const successful = document.execCommand('copy');
+                    const msg = successful ? 'লিঙ্ক কপি করা হয়েছে!' : 'লিঙ্ক কপি করা যায়নি।';
+                    alert(msg);
+                } catch (err) {
+                    alert('দুঃখিত, আপনার ব্রাউজার স্বয়ংক্রিয়ভাবে কপি সমর্থন করে না।');
+                }
+                document.body.removeChild(textArea);
+            }
+            
+            whatsappBtn.addEventListener('click', function() {
+                const name = nameInput.value.trim() || "একজন বন্ধু";
+                const message = `${name} এর পক্ষ থেকে ঈদ-উল-আযহার আন্তরিক শুভেচ্ছা! আমার পাঠানো কার্ডটি দেখুন:\n${shareUrlDisplay.textContent}`;
+                const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
+            });
+            
+            facebookBtn.addEventListener('click', function() {
+                const urlToShare = shareUrlDisplay.textContent;
+                const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(urlToShare)}`;
+                window.open(facebookUrl, '_blank');
+            });
+            
+            if (navigator.share) {
+                nativeShareBtn.style.display = 'inline-block';
+                nativeShareBtn.addEventListener('click', async function() {
+                    const name = nameInput.value.trim() || "একজন বন্ধু";
+                    try {
+                        await navigator.share({
+                            title: 'ঈদ-উল-আযহার শুভেচ্ছা',
+                            text: `${name} এর পক্ষ থেকে ঈদ-উল-আযহার আন্তরিক শুভেচ্ছা!`,
+                            url: shareUrlDisplay.textContent,
+                        });
+                    } catch (err) {
+                        console.error('Share failed:', err.message);
+                    }
+                });
+            }
+            
+            function updateGreeting(name) {
+                personalizedMessage.innerHTML = `<strong>${name}</strong> এর পক্ষ থেকে <br>ঈদ-উল-আযহার আন্তরিক শুভেচ্ছা ও অভিনন্দন!`;
+            }
+            
+            function showShareSection(name) {
+                const currentUrl = `${window.location.origin}${window.location.pathname}?name=${encodeURIComponent(name)}`;
+                shareUrlDisplay.textContent = currentUrl;
+                shareSection.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
